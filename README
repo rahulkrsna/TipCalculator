@@ -1,0 +1,15 @@
+Tip Calculator
+
+IOS Application
+IOS 9
+XCode 7.1
+
+About the Application:
+This appliction is to calculate the tip to be paid based on the bill in a hotel/restaurant etc.
+It support two major views.
+
+1. Tip-Calculation View
+   This is the view where the user enters the amount to be paid and the percentage of tip the users wishes to pay. Application would generate the exact tip amount(2 level precision) and the total bill amount to be paid.
+   
+2. Settings View
+	This view allows the user to save the default tip percentage for the appliation.
