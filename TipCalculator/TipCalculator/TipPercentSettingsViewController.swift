@@ -12,16 +12,24 @@ class TipPercentSettingsViewController: UIViewController {
 
     @IBOutlet var tipPercentDefaultSegment: UISegmentedControl!
     
+    let defaults = NSUserDefaults.standardUserDefaults()
+    
     // SET THE DEFUALT TIP PERCENT VALUE.
     @IBAction func tipPercentDefaultValueChange(sender: AnyObject) {
-        defaultTipPercenSegment = tipPercentDefaultSegment.selectedSegmentIndex
+        
+        defaults.setInteger(tipPercentDefaultSegment.selectedSegmentIndex, forKey: defaultTipPercentage)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // ON VIEW LOAD SET THE DEFAULT SEGMENT INDEX.
-        tipPercentDefaultSegment.selectedSegmentIndex = defaultTipPercenSegment
+        if let value:Int = defaults.integerForKey(defaultTipPercentage) {
+            tipPercentDefaultSegment.selectedSegmentIndex = value
+        } else {
+            tipPercentDefaultSegment.selectedSegmentIndex = 0
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-var defaultTipPercenSegment:Int = 0
+var defaultTipPercentage:String = "defaultTipPercentage"
 
 class ViewController: UIViewController {
 
@@ -16,6 +16,13 @@ class ViewController: UIViewController {
     @IBOutlet var tipPercentSegment: UISegmentedControl!
     @IBOutlet var totalAmountLabel: UILabel!
     @IBOutlet var tiplabel: UILabel!
+    @IBOutlet var onePersonShare: UILabel!
+    @IBOutlet var twoPeopleShare: UILabel!
+    @IBOutlet var threePeopleShare: UILabel!
+    @IBOutlet var fourPeopleShare: UILabel!
+    @IBOutlet var fivePeopleShare: UILabel!
+    
+    let defaults = NSUserDefaults.standardUserDefaults()
     
     var tipPercentages = [0.18, 0.20, 0.22]
     // On click of the segment
@@ -53,14 +60,32 @@ class ViewController: UIViewController {
         
         tiplabel.text = String(format: "$%.2f", tip)
         totalAmountLabel.text = String(format: "$%.2f", totalAmount)
+        onePersonShare.text = String(format: "$%.2f", totalAmount)
+        twoPeopleShare.text = String(format: "$%.2f", totalAmount/2.0)
+        threePeopleShare.text = String(format: "$%.2f", totalAmount/3.0)
+        fourPeopleShare.text = String(format: "$%.2f", totalAmount/4.0)
+        fivePeopleShare.text = String(format: "$%.2f", totalAmount/5.0)
     }
     
     // This would reset all the values.
     func resetTheValues() {
+        let defaultValue = "$0.00"
+        
         billAmount.text = ""
-        totalAmountLabel.text = "$0.00"
-        tiplabel.text = "$0.00"
-        tipPercentSegment.selectedSegmentIndex = defaultTipPercenSegment
+        totalAmountLabel.text = defaultValue
+        tiplabel.text = defaultValue
+        onePersonShare.text = defaultValue
+        twoPeopleShare.text = defaultValue
+        threePeopleShare.text = defaultValue
+        fourPeopleShare.text = defaultValue
+        fivePeopleShare.text = defaultValue
+        
+        // ON VIEW LOAD SET THE DEFAULT SEGMENT INDEX.
+        if let value:Int = defaults.integerForKey(defaultTipPercentage) {
+            tipPercentSegment.selectedSegmentIndex = value
+        } else {
+            tipPercentSegment.selectedSegmentIndex = 0
+        }
     }
     
     // End Editing on Tap.
