@@ -14,7 +14,6 @@ class ViewController: UIViewController {
 
     @IBOutlet var billAmount: UITextField!
     @IBOutlet var tipPercentSegment: UISegmentedControl!
-    @IBOutlet var totalAmountLabel: UILabel!
     @IBOutlet var tiplabel: UILabel!
     @IBOutlet var onePersonShare: UILabel!
     @IBOutlet var twoPeopleShare: UILabel!
@@ -59,7 +58,6 @@ class ViewController: UIViewController {
         let totalAmount: Double = (Double(billAmount.text!))! + tip
         
         tiplabel.text = String(format: "$%.2f", tip)
-        totalAmountLabel.text = String(format: "$%.2f", totalAmount)
         onePersonShare.text = String(format: "$%.2f", totalAmount)
         twoPeopleShare.text = String(format: "$%.2f", totalAmount/2.0)
         threePeopleShare.text = String(format: "$%.2f", totalAmount/3.0)
@@ -72,7 +70,6 @@ class ViewController: UIViewController {
         let defaultValue = "$0.00"
         
         billAmount.text = ""
-        totalAmountLabel.text = defaultValue
         tiplabel.text = defaultValue
         onePersonShare.text = defaultValue
         twoPeopleShare.text = defaultValue
